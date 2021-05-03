@@ -23,6 +23,17 @@ if(!$_POST['login'] or !$_POST['senha']) {
 
 }else{
 
+    if($_POST['login'] and $_POST['senha'] < 8){
+
+        echo("
+            <script>
+            alert('Insira no mínimo 8 letras nos campos')
+            window.location='../views/Cadastro.html';
+            </script>
+        ");
+
+    }else {
+
     $link = mysqli_connect('localhost','root','','cadastro');
     $login = $_POST['login'];
     $sql = "SELECT login from clients where login like '$login'";
@@ -44,6 +55,7 @@ if(!$_POST['login'] or !$_POST['senha']) {
         $usr->Inserir();
         header('Location:../views/home.php');
     
+    }
     }
 
 }
